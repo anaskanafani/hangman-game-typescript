@@ -1,5 +1,3 @@
-import styles from "./Keyboard.module.css";
-
 const letters = [
   "a",
   "b",
@@ -35,16 +33,20 @@ type KeyboardProps = {
   selectedLetters: string[];
 };
 
-export function Keyboard({ word, checkGuess, selectedLetters }: KeyboardProps) {
+const Keyboard = ({ word, checkGuess, selectedLetters }: KeyboardProps) => {
   return (
-    <div className="grid grid-cols-7 gap-4 mt-24">
+    <div className="grid grid-cols-7 gap-2 md:gap-4 my-8 md:mt-16">
       {letters.map((key) => {
         const selected: boolean = selectedLetters.includes(key);
         const correct: boolean = word.includes(key);
         return (
           <button
             className={`border-black text-center aspect-square text-2xl uppercase border-2 rounded-lg ${
-              !correct && selected ? "bg-red-400" : correct && selected ? "bg-green-400" : ""
+              !correct && selected
+                ? "bg-red-400"
+                : correct && selected
+                ? "bg-green-400"
+                : ""
             }`}
             key={key}
             onClick={() => checkGuess(key)}
@@ -56,4 +58,6 @@ export function Keyboard({ word, checkGuess, selectedLetters }: KeyboardProps) {
       })}
     </div>
   );
-}
+};
+
+export default Keyboard;
